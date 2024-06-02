@@ -11,7 +11,7 @@ const SocialButton = () => {
       {siteConfig('CONTACT_GITHUB') && <a target='_blank' rel='noreferrer' title={'github'} href={siteConfig('CONTACT_GITHUB')} >
         <i className='transform hover:scale-125 duration-150 fab fa-github dark:hover:text-indigo-400 hover:text-indigo-600'/>
       </a>}
-      {siteConfig('CONTACT_TWITTER') && <a target='_blank' rel='noreferrer' title={'twitter'} href={siteConfig('CONTACT_TWITTER')} >
+      {siteConfig('CONTACT_TWITTER') && <a target='_blank' rel='noreferrer' title={'Wechat'} href={siteConfig('CONTACT_TWITTER')} >
         <i className='transform hover:scale-125 duration-150 fa-brands fa-weixin dark:hover:text-indigo-400 hover:text-indigo-600'/>
       </a>}
       {siteConfig('CONTACT_TELEGRAM') && <a target='_blank' rel='noreferrer' href={siteConfig('CONTACT_TELEGRAM')} title={'telegram'} >
