@@ -8,15 +8,13 @@ import { siteConfig } from '@/lib/config'
 export default function ArticleCopyright () {
   const router = useRouter()
   const [path, setPath] = useState(siteConfig('LINK') + router.asPath)
-  useEffect(() => {
-    setPath(window.location.href)
-  })
+  
+useEffect(() => {
+  setPath(window.location.href)
+}, [router.asPath])  // 加入依赖，确保路径更新
 
+  
   const { locale } = useGlobal()
-
-  if (!siteConfig('HEXO_ARTICLE_COPYRIGHT', null, CONFIG)) {
-    return <></>
-  }
 
   return (
     <section className="dark:text-gray-300 mt-6 mx-1 ">
