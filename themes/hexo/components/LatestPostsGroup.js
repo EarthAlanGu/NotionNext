@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
  * @param sliceCount 截取展示的数量 默认6
  * @constructor
  */
-const LatestPostsGroup = ({ latestPosts, siteInfo }) => {
+const LatestPostsGroup = ({ latestPosts, siteInfo, sliceCount = 6 }) => {
   // 获取当前路径
   const currentPath = useRouter().asPath
   const { locale } = useGlobal()
@@ -19,15 +19,20 @@ const LatestPostsGroup = ({ latestPosts, siteInfo }) => {
     return <></>
   }
 
+  // 按照发布时间排序文章，并截取最新的几篇
+  const sortedPosts = [...latestPosts]
+    .sort((a, b) => new Date(b.publishDay) - new Date(a.publishDay))
+    .slice(0, sliceCount)
+
   return (
     <>
-      <div className=' mb-2 px-1 flex flex-nowrap justify-between'>
+      <div className='mb-2 px-1 flex flex-nowrap justify-between'>
         <div>
           <i className='mr-2 fas fas fa-history' />
           {locale.COMMON.LATEST_POSTS}
         </div>
       </div>
-      {latestPosts.map(post => {
+      {sortedPosts.map(post => {
         const headerImage = post?.pageCoverThumbnail
           ? post.pageCoverThumbnail
           : siteInfo?.pageCover
@@ -64,4 +69,5 @@ const LatestPostsGroup = ({ latestPosts, siteInfo }) => {
     </>
   )
 }
+
 export default LatestPostsGroup
