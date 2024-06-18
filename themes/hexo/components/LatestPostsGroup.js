@@ -20,7 +20,7 @@ const LatestPostsGroup = ({ latestPosts, siteInfo, sliceCount = 6 }) => {
   }
 
   // 按照发布时间排序文章，并截取最新的几篇
-  const sortedPosts = [...latestPosts]
+  const sortedPosts = latestPosts
     .sort((a, b) => new Date(b.publishDay) - new Date(a.publishDay))
     .slice(0, sliceCount)
 
