@@ -44,6 +44,9 @@ export default function SideRight(props) {
     return null
   }
 
+  // 对 latestPosts 按发布时间排序
+  const sortedLatestPosts = latestPosts ? [...latestPosts].sort((a, b) => new Date(b.date) - new Date(a.date)) : []
+
   return (
     <div id='sideRight' className={className}>
       <InfoCard {...props} />
@@ -65,8 +68,8 @@ export default function SideRight(props) {
           <TagGroups tags={tags} currentTag={currentTag} />
         </Card>
       )}
-      {siteConfig('HEXO_WIDGET_LATEST_POSTS', null, CONFIG) && latestPosts && latestPosts.length > 0 && <Card>
-        <LatestPostsGroup {...props} />
+      {siteConfig('HEXO_WIDGET_LATEST_POSTS', null, CONFIG) && sortedLatestPosts.length > 0 && <Card>
+        <LatestPostsGroup {...props} latestPosts={sortedLatestPosts} />
       </Card>}
 
       <Announcement post={notice}/>
@@ -82,7 +85,6 @@ export default function SideRight(props) {
         <FaceBookPage/>
         <Live2D />
       </div>
-
     </div>
   )
 }
